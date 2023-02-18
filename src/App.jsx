@@ -15,7 +15,7 @@ function App() {
   }, [value]);
 
   const getData = () => {
-    fetch("http://192.168.29.208:3000/binfull", {
+    fetch("dustbinmonitor.ap-1.evennode.com/binfull", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
