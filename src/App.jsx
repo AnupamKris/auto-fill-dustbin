@@ -15,11 +15,13 @@ function App() {
   );
   useEffect(() => {
     console.log(value);
-    if (value.data()["full"] == true) {
-      audio.current.play();
-    } else {
-      audio.current.pause();
-      audio.current.currentTime = 0;
+    if (!loading) {
+      if (value.data()["full"] == true) {
+        audio.current.play();
+      } else {
+        audio.current.pause();
+        audio.current.currentTime = 0;
+      }
     }
   }, [value]);
 
