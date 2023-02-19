@@ -23,6 +23,7 @@ function App() {
         audio.current.play();
         setShowNotif(true);
       } else {
+        setShowNotif(false);
         audio.current.pause();
         audio.current.currentTime = 0;
       }
