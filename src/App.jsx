@@ -5,10 +5,13 @@ import { doc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { firestore } from "./firebaseConfig";
 import sweet from "./assets/sweet.mp3";
+import "./dustbin.scss";
+import NotifPanel from "./NotifPanel";
 
 function App() {
   const [count, setCount] = useState(0);
   const audio = useRef(null);
+  const [showNotif, setShowNotif] = useState(false);
 
   const [value, loading, error] = useDocument(
     doc(firestore, "dustbins", "bin1")
@@ -18,6 +21,7 @@ function App() {
     if (!loading) {
       if (value.data()["full"] == true) {
         audio.current.play();
+        setShowNotif(true);
       } else {
         audio.current.pause();
         audio.current.currentTime = 0;
@@ -38,14 +42,29 @@ function App() {
 
   return (
     <div className="App">
+      {showNotif && <NotifPanel setShowNotif={setShowNotif} />}
+      {/* <button onClick={() => setShowNotif(!showNotif)}>Notif</button> */}
       <h1>Dustbin Monitor</h1>
-      <button onClick={getData}></button>
+      <audio src={sweet} ref={audio} />
       <div className="card">
-        <p>Bin1 - </p>
+        <p class="text">Bin 1</p>
         {!loading && (
-          <p>&nbsp;{value.data()["full"] == true ? "Full" : "Empty"}</p>
+          <p class={"status " + (value.data()["full"] == true ? "full" : "")}>
+            {value.data()["full"] == true ? "Full" : "Empty"}
+          </p>
         )}
-        <audio src={sweet} ref={audio} />
+      </div>
+      <div className="card">
+        <p class="text">Bin 2</p>
+        <p className="status">Empty</p>
+      </div>
+      <div className="card">
+        <p class="text">Bin 3</p>
+        <p className="status">Empty</p>
+      </div>
+      <div className="card">
+        <p class="text">Bin 4</p>
+        <p className="status">Empty</p>
       </div>
     </div>
   );
