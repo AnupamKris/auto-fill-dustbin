@@ -4,7 +4,7 @@ import "./App.css";
 import { doc } from "firebase/firestore";
 import { useDocument } from "react-firebase-hooks/firestore";
 import { firestore } from "./firebaseConfig";
-import sweet from "./assets/After Hours, alram.aac";
+import sweet from "./assets/Alarm 01.mp3";
 import "./dustbin.scss";
 import NotifPanel from "./NotifPanel";
 
