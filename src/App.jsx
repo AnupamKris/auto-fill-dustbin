@@ -45,7 +45,7 @@ function App() {
     <div className="App">
       {showNotif && <NotifPanel setShowNotif={setShowNotif} />}
       {/* <button onClick={() => setShowNotif(!showNotif)}>Notif</button> */}
-      <h1>Dustbin Monitor</h1>
+      <h1>Tech-Bin Monitor</h1>
       <audio src={sweet} ref={audio} />
       <div className="card">
         <p class="text">Bin 1</p>
